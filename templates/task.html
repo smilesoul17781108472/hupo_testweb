@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>计划任务汇总</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<!--进度条js -->
+		<script type='text/javascript'>
+		 $({property: 0}).animate({property: 100}, {
+			    duration: 3000,
+			    step: function() {
+			        var percentage = Math.round(this.property);
+
+			        $('#progress').css('width',  percentage+"%");
+
+			         if(percentage == 100) {
+           				 $("#progress").addClass("done");//完成，隐藏进度条
+       				 }
+			    }
+			});
+		</script>
+        <style type="text/css">
+			body{
+				margin:0;
+                background-size: cover;
+                background-attachment: fixed;
+			}
+			#progress {
+				position:fixed;
+				height: 2px;
+				background:#b91f1f;
+				transition:opacity 500ms linear
+			}
+			#progress.done {
+				opacity:0
+			}
+			#progress span {
+				position:absolute;
+				height:2px;
+				-webkit-box-shadow:#b91f1f 1px 0 6px 1px;
+				-webkit-border-radius:100%;
+				opacity:1;
+				width:150px;
+				right:-10px;
+				-webkit-animation:pulse 2s ease-out 0s infinite;
+			}
+
+			@-webkit-keyframes pulse {
+				30% {
+					opacity:.6
+				}
+				60% {
+					opacity:0;
+				}
+				100% {
+					opacity:.6
+				}
+			}
+
+		</style>
+    <!--按钮loading js -->
+    <style>
+
+#loading {
+  position:absolute;
+  width:500px;
+  height:150px;  top:20%;
+  left:35%; right: 65%;
+  margin: 0 auto;
+  background-color:#FFD700;
+  border:1px solid #FFD700;
+
+}
+
+td{
+    border:1px solid #df2020;
+    text-align: left;
+    padding: 5px;
+}
+input{
+    width:50px;
+    border:1px solid #4edf44;
+    background-color: #6bdf32;
+    padding: 0 5px;
+}
+
+</style>
+    <script>
+    function goprogress(){
+        var pro=document.getElementsByTagName("progress")[0];
+        gotoend(pro,0);
+    }
+    function gotoend(pro,value){
+        var value=value+1;
+        pro.value=value;
+        if(value<4000) {
+            setTimeout(function(){gotoend(pro, value);},10)
+        }else{
+            setTimeout(function(){alert("任务完成")},10);
+        }
+    }
+    </script>
+
+</head>
+
+<body>
+
+<!--loading进度条-->
+<div  id="loading" style="display:none;height: 240px;width: 550px">
+<p style="margin-bottom: 0;text-align: center;">脚本执行中，请耐心等待...</p>
+    <br/>
+    <!--http://ww2.sinaimg.cn/mw690/0064cTs2gw1exk8tho8p7g30dg05u451.gif 原动图-->
+    <img src="http://wx3.sinaimg.cn/large/62d8a08bgy1fpkhz81k0dg20dw0af4qq.gif" height="240px" width="550px">
+</div>
+
+<div id="progress">
+			<span></span>
+		</div>
+
+<h1>{{ task }}</h1>
+<div id="container" style="width:100%;text-align: center">
+    <div id="header" style="backgroud-color:#FFA500;text-align:center;">
+        <h1 style="margin-bottom: 0" >计划任务平台</h1>
+    </div>
+<table style="margin: auto" cellpadding="0" cellspacing="0" >
+
+    <!--宜湃网计划任务汇总 -->
+    <tr>
+                <td>宜湃网计划任务</td>
+                <td >
+                    <form action="/task_do" method="get" accept-charset="UTF-8" >
+                        <select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 160px;height: 20px;text-align:center ";>
+                        <option value="">请选择内测计划任务</option>
+                        <option value="http://task.yipaiwang.co/borrowlate.task.php">官标流标计划任务</option>
+                        <option value="http://task.yipaiwang.co/autorepayment0.task.php?t=1">优+还款计划任务</option>
+                        <option value="http://task.yipaiwang.co/Redactivation.task.php">红包激活计划任务</option>
+                        <option value="http://task.yipaiwang.co/Redunlocktender.task.php">红包提取/回收计划任务</option>
+                        <option value="http://task.yipaiwang.co/worthautoissue.task.php">出队列计划任务</option>
+                        <option value="http://task.yipaiwang.co/increasecoupon.task.php">加息券匹配计划任务</option>
+                        <option value="http://task.yipaiwang.co/increaseCouponRed.task.php">加息券-还款日发放红包计划任务</option>
+                        <option value="http://task.yipaiwang.co/cashborrowtender.task.php">还款后下账前执行</option>
+                        <option value="http://task.yipaiwang.co/cashborrowaccounting.task.php">金交所冻结后添加数据</option>
+                        <option value="http://task.yipaiwang.co/investTransferMonitoring.task.php">每天自动撤销转让</option>
+                        <option value="http://task.yipaiwang.co/datatransfer.task.php">数据转移</option>
+                        <option value="http://task.yipaiwang.co/friendredate.task.php">刷新返利计划任务</option>
+                        <option value="http://task.yipaiwang.co/firendstender.task.php">好友是否出借计划任务</option>
+                        <option value="http://www.yipaiwang.co/app/clearMem">清除缓存</option>
+                        <option value="http://smstask.yipaiwang.co/smsauth.task.php">站内信计划任务</option>
+                        <option value="http://smstask.yipaiwang.co/sms.task.php">短信计划任务</option>
+                        <option value="http://task.yipaiwang.co/worthlaterepaysmslog.task.php">当日21时预警计划任务</option>
+                        <option value="http://task.yipaiwang.co/worthrepaysmslog.task.php">余额不足提醒1</option>
+                        <option value="http://task.yipaiwang.co/worthrepaywaitlog.task.php">余额不足提醒2</option>
+                        <option value="http://task.yipaiwang.co/userBlack.task.php">迟回购率计划任务</option>
+                        <option value="http://task.yipaiwang.co/lateReward.task.php">优+逾期转让红包+图标显示</option>
+                        <option value="http://task.yipaiwang.co/crmUpdateUserInfo.task.php">CRM-更新用户信息</option>
+                        <option value="http://task.yipaiwang.co/crmTenderCount.task.php">CRM-投资金额和次数统计</option>
+                        <option value="http://task.yipaiwang.co/tenderEshareReward.task.php">优+返利计划任务</option>
+                        <option value="http://task.yipaiwang.co/tenderEshareInterestReward.task.php">优+加息计划任务</option>
+                    </select>
+                        <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+                    </form>
+                    <form action="/task_do" method="get" accept-charset="UTF-8">
+                        <select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 160px;height: 20px;text-align:center ";>
+                        <option value="">请选择外测计划任务</option>
+                        <option value="http://task.yipaiwang.cc/borrowlate.task.php">官标流标计划任务</option>
+                        <option value="http://task.yipaiwang.cc/autorepayment0.task.php?t=1">优+还款计划任务</option>
+                        <option value="http://task.yipaiwang.cc/Redactivation.task.php">红包激活计划任务</option>
+                        <option value="http://task.yipaiwang.cc/Redunlocktender.task.php">红包提取/回收计划任务</option>
+                        <option value="http://task.yipaiwang.cc/worthautoissue.task.php">出队列计划任务</option>
+                        <option value="http://task.yipaiwang.cc/increasecoupon.task.php">加息券匹配计划任务</option>
+                        <option value="http://task.yipaiwang.cc/increaseCouponRed.task.php">加息券-还款日发放红包计划任务</option>
+                        <option value="http://task.yipaiwang.cc/cashborrowtender.task.php">还款后下账前执行</option>
+                        <option value="http://task.yipaiwang.cc/cashborrowaccounting.task.php">金交所冻结后添加数据</option>
+                        <option value="http://task.yipaiwang.cc/investTransferMonitoring.task.php">每天自动撤销转让</option>
+                        <option value="http://task.yipaiwang.cc/datatransfer.task.php">数据转移</option>
+                        <option value="http://task.yipaiwang.cc/friendredate.task.php">刷新返利计划任务</option>
+                        <option value="http://task.yipaiwang.cc/firendstender.task.php">好友是否出借计划任务</option>
+                        <option value="http://www.yipaiwang.cc/app/clearMem">清除缓存</option>
+                        <option value="http://smstask.yipaiwang.cc/smsauth.task.php">站内信计划任务</option>
+                        <option value="http://smstask.yipaiwang.cc/sms.task.php">短信计划任务</option>
+                        <option value="http://task.yipaiwang.cc/worthlaterepaysmslog.task.php">当日21时预警计划任务</option>
+                        <option value="http://task.yipaiwang.cc/worthrepaysmslog.task.php">余额不足提醒1</option>
+                        <option value="http://task.yipaiwang.cc/worthrepaywaitlog.task.php">余额不足提醒2</option>
+                        <option value="http://task.yipaiwang.cc/userBlack.task.php">迟回购率计划任务</option>
+                        <option value="http://task.yipaiwang.cc/lateReward.task.php">优+逾期转让红包+图标显示</option>
+                        <option value="http://task.yipaiwang.cc/crmUpdateUserInfo.task.php">CRM-更新用户信息</option>
+                        <option value="http://task.yipaiwang.cc/crmTenderCount.task.php">CRM-投资金额和次数统计</option>
+                        <option value="http://task.yipaiwang.cc/tenderEshareReward.task.php">优+返利计划任务</option>
+                        <option value="http://task.yipaiwang.cc/tenderEshareInterestReward.task.php">优+加息计划任务</option>
+                    </select>
+
+                        <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+
+
+                    </form>
+                </td>
+            </tr>
+
+    <!--宜贷网计划任务汇总 -->
+     <tr>
+                <td style="text-align:center">宜贷网计划任务</td>
+                <td>
+                    <form action="/task_do" method="get" accept-charset="UTF-8">
+                        <select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 160px;height: 20px;text-align:center ";>
+                        <option value="">请选择内测计划任务</option>
+                        <option value="http://task.yidai.co/borrowlate.task.php">官标流标计划任务</option>
+                        <option value="http://task.yidai.co/autorepayment0.task.php?t=1">宜享还款计划任务</option>
+                        <option value="http://task.yidai.co/Redactivation.task.php">红包激活计划任务</option>
+                        <option value="http://task.yidai.co/Redunlocktender.task.php">红包提取/回收计划任务</option>
+                        <option value="http://task.yidai.co/worthautoissue.task.php">出队列计划任务</option>
+                        <option value="http://task.yidai.co/investTransferMonitoring.task.php">每天自动撤销转让</option>
+                        <option value="http://task.yidai.co/datatransfer.task.php">数据转移</option>
+                        <option value="http://task.yidai.co/friendredate.task.php">刷新返利计划任务</option>
+                        <option value="http://task.yidai.co/firendstender.task.php">好友是否出借计划任务</option>
+                        <option value="http://smstask.yidai.co/smsauth.task.php">站内信计划任务</option>
+                        <option value="http://smstask.yidai.co/sms.task.php">短信计划任务</option>
+                        <option value="http://task.yidai.co/worthlaterepaysmslog.task.php">当日21时预警计划任务</option>
+                        <option value="http://task.yidai.co/worthrepaysmslog.task.php">余额不足提醒1</option>
+                        <option value="http://task.yidai.co/worthrepaywaitlog.task.php">余额不足提醒2</option>
+                        <option value="http://task.yidai.co/userBlack.task.php">迟回购率计划任务</option>
+                        <option value="http://task.yidai.co/worthautobuy.task.php">自动承接计划任务</option>
+                    </select>
+                        <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+                    </form>
+                    <form action="/task_do" method="get" accept-charset="UTF-8">
+                        <select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 160px;height: 20px;text-align:center ";>
+                            <option value="">请选择外测计划任务</option>
+                            <option value="http://task.yidaip2p.net/borrowlate.task.php">官标流标计划任务</option>
+                            <option value="http://task.yidaip2p.net/autorepayment0.task.php?t=1">宜享还款计划任务</option>
+                            <option value="http://task.yidaip2p.net/Redactivation.task.php">红包激活计划任务</option>
+                            <option value="http://task.yidaip2p.net/Redunlocktender.task.php">红包提取/回收计划任务</option>
+                            <option value="http://task.yidaip2p.net/worthautoissue.task.php">出队列计划任务</option>
+                            <option value="http://task.yidaip2p.net/investTransferMonitoring.task.php">每天自动撤销转让</option>
+                            <option value="http://task.yidaip2p.net/datatransfer.task.php">数据转移</option>
+                            <option value="http://task.yidaip2p.net/friendredate.task.php">刷新返利计划任务</option>
+                            <option value="http://task.yidaip2p.net/firendstender.task.php">好友是否出借计划任务</option>
+                            <option value="http://smstask.yidaip2p.net/smsauth.task.php">站内信计划任务</option>
+                            <option value="http://smstask.yidaip2p.net/sms.task.php">短信计划任务</option>
+                            <option value="http://task.yidaip2p.net/worthlaterepaysmslog.task.php">当日21时预警计划任务</option>
+                            <option value="http://task.yidaip2p.net/worthrepaysmslog.task.php">余额不足提醒1</option>
+                            <option value="http://task.yidaip2p.net/worthrepaywaitlog.task.php">余额不足提醒2</option>
+                            <option value="http://task.yidaip2p.net/userBlack.task.php">迟回购率计划任务</option>
+                            <option value="http://task.yidaip2p.net/worthautobuy.task.php">自动承接计划任务</option>
+                    </select>
+
+
+                        <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+
+
+                    </form>
+                </td>
+            </tr>
+
+    <!--满标计划任务 -->
+    <tr>
+                <td style="text-align:center">满标复审</td>
+                <td>
+                    <form action="/task_manbiao" method="get" accept-charset="UTF-8">
+                        <label>请选择环境</label><select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 120px;height: 20px;text-align:center ";>
+                                                        <option value="">请选择环境</option>
+                                                        <option value="yipaiwang.co">宜湃CO</option>
+                                                        <option value="yipaiwang.cc">宜湃CC</option>
+                                                        <option value="yidai.co">宜贷CO</option>
+                                                        <option value="yidaip2p.net">宜贷NET</option>
+
+                    </select>
+                    <label>借款编号</label><input type="text" name="borrowid" style="width: 120px;height: 20px;text-align:center ";>
+                        <label>复审日期</label><input type="text" name="date" style="width: 60px;height: 20px;text-align:center ";>
+                        <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+
+
+                    </form>
+                </td>
+            </tr>
+
+
+    <!--逾期计划任务 -->
+    <tr>
+                <td style="text-align:center">逾期计划任务</td>
+                <td>
+                    <form action="/task_yuqi" method="get" accept-charset="UTF-8">
+                        <label>请选择环境</label><select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 120px;height: 20px;text-align:center ";>
+                                                        <option value="">请选择环境</option>
+                                                        <option value="yipaiwang.co">宜湃CO</option>
+                                                        <option value="yipaiwang.cc">宜湃CC</option>
+                                                        <option value="yidai.co">宜贷CO</option>
+                                                        <option value="yidaip2p.net">宜贷NET</option>
+
+                    </select>
+                        <label>用户ID</label><input type="text" name="user_id" style="width: 60px;height: 20px;text-align:center ";>
+                        <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+
+
+                    </form>
+                </td>
+            </tr>
+</table>
+    <br>
+    <!--提现计划任务 -->
+<table style="margin: auto" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td>提现计划任务</td>
+        <td>
+            <form action="/task_tixian_1" method="get" accept-charset="UTF-8" >
+                <label>提现前三步</label><select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 120px;height: 20px;text-align:center ";>
+                                                        <option value="">请选择环境</option>
+                                                        <option value="yipaiwang.co">宜湃CO</option>
+                                                        <option value="yipaiwang.cc">宜湃CC</option>
+                                                        <option value="yidai.co">宜贷CO</option>
+                                                        <option value="yidaip2p.net">宜贷NET</option>
+
+                    </select>
+                    <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+            </form>
+            <form action="/task_tixian_2" method="get" accept-charset="UTF-8" >
+                <label>修改时间至第二天13:00-15:00</label>
+                <br>
+                <label>提现后两步</label><select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 120px;height: 20px;text-align:center ";>
+                                                        <option value="">请选择环境</option>
+                                                        <option value="yipaiwang.co">宜湃CO</option>
+                                                        <option value="yipaiwang.cc">宜湃CC</option>
+                                                        <option value="yidai.co">宜贷CO</option>
+                                                        <option value="yidaip2p.net">宜贷NET</option>
+
+                    </select>
+                    <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+            </form>
+            <form action="/task_tixian" method="get" accept-charset="UTF-8" >
+                <label>提现最后一步</label><select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 120px;height: 20px;text-align:center ";>
+                                                        <option value="">请选择环境</option>
+                                                        <option value="yipaiwang.co">宜湃CO</option>
+                                                        <option value="yipaiwang.cc">宜湃CC</option>
+                                                        <option value="yidai.co">宜贷CO</option>
+                                                        <option value="yidaip2p.net">宜贷NET</option>
+
+                    </select>
+                    <label>状态</label><select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="status" style="width: 120px;height: 20px;text-align:center ";>
+                                                        <option value="">请选择提现状态</option>
+                                                        <option value="1">提现成功</option>
+                                                        <option value="0">提现失败</option>
+                    </select>
+                    <label>流水号</label><input type="text" name="log_num" style="width: 120px;height: 20px;text-align:center ";>
+                    <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+            </form>
+        </td>
+    </tr>
+
+</table>
+</div>
+<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;position: fixed;_position: absolute;bottom: 0;width:100%;">
+版权 chenqiang© yipaiwang.com
+</div>
+</body>
+</html>
