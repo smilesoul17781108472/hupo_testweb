@@ -26,6 +26,10 @@ def IDcard(request):
 def task(request):
     return render(request, 'task.html')
 
+#周报填写页面
+def report(request):
+    return render(request, 'report.html')
+
 #周报填写
 def weekly(request):
     new_username = request.GET.get('username')
