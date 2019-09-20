@@ -38,7 +38,7 @@ def bankid():
         # 进行数据库写入
         cursor = connect.cursor()
         # SQL 插入语句
-        sql = "insert into test.bank_id(bankid,modify_time) values('%s','%s')" % (bankid,now)
+        sql = "insert into hupo.bank_id(bankid,modify_time) values('%s','%s')" % (bankid,now)
         # 执行sql语句
         input = cursor.execute(sql)
         connect.commit()  # 实例提交命令

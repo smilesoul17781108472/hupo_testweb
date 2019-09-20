@@ -44,7 +44,7 @@ def idcard_generator():
             # 进行数据库写入
             cursor = connect.cursor()
             # SQL 插入语句
-            sql = "insert into test.id_card(username,ID_card,modify_time) values('%s','%s','%s')" % (name, idcard, now)
+            sql = "insert into hupo.id_card(username,ID_card,modify_time) values('%s','%s','%s')" % (name, idcard, now)
             # 执行sql语句
             input = cursor.execute(sql)
             connect.commit()  # 实例提交命令
