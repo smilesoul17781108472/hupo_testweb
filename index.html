@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>HoPo-Test</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<!--进度条js -->
+		<script type='text/javascript'>
+		 $({property: 0}).animate({property: 100}, {
+			    duration: 3000,
+			    step: function() {
+			        var percentage = Math.round(this.property);
+
+			        $('#progress').css('width',  percentage+"%");
+
+			         if(percentage == 100) {
+           				 $("#progress").addClass("done");//完成，隐藏进度条
+       				 }
+			    }
+			});
+		</script>
+        <style type="text/css">
+			body{
+				margin:0;
+			}
+			#progress {
+				position:fixed;
+				height: 2px;
+				background:#b91f1f;
+				transition:opacity 500ms linear
+			}
+			#progress.done {
+				opacity:0
+			}
+			#progress span {
+				position:absolute;
+				height:2px;
+				-webkit-box-shadow:#b91f1f 1px 0 6px 1px;
+				-webkit-border-radius:100%;
+				opacity:1;
+				width:150px;
+				right:-10px;
+				-webkit-animation:pulse 2s ease-out 0s infinite;
+			}
+
+			@-webkit-keyframes pulse {
+				30% {
+					opacity:.6
+				}
+				60% {
+					opacity:0;
+				}
+				100% {
+					opacity:.6
+				}
+			}
+
+		</style>
+    <!--按钮loading js -->
+    <style>
+td{
+    border:1px solid #df2020;
+    text-align: left;
+    padding: 5px;
+}
+
+
+#loading {
+  position:absolute;
+  width:500px;
+  height:150px;  top:20%;
+  left:35%; right: 65%;
+  margin: 0 auto;
+  background-color:#FFD700;
+  border:1px solid #FFD700;
+
+}
+</style>
+    <script>
+    function goprogress(){
+        var pro=document.getElementsByTagName("progress")[0];
+        gotoend(pro,0);
+    }
+    function gotoend(pro,value){
+        var value=value+1;
+        pro.value=value;
+        if(value<4000) {
+            setTimeout(function(){gotoend(pro, value);},10)
+        }else{
+            setTimeout(function(){alert("任务完成")},10);
+        }
+    }
+    </script>
+
+</head>
+<!--当前时间js -->
+<script>
+function getCurDate()
+{
+ var d = new Date();
+ var week;
+ switch (d.getDay()){
+ case 1: week="星期一"; break;
+ case 2: week="星期二"; break;
+ case 3: week="星期三"; break;
+ case 4: week="星期四"; break;
+ case 5: week="星期五"; break;
+ case 6: week="星期六"; break;
+ default: week="星期天";
+ }
+ var years = d.getFullYear();
+ var month = add_zero(d.getMonth()+1);
+ var days = add_zero(d.getDate());
+ var hours = add_zero(d.getHours());
+ var minutes = add_zero(d.getMinutes());
+ var seconds=add_zero(d.getSeconds());
+ var ndate = years+"年"+month+"月"+days+"日 "+hours+":"+minutes+":"+seconds+" "+week;
+ divT.innerHTML= ndate;
+ divT1.innerHTML= ndate;
+ divT2.innerHTML= ndate;
+ divT3.innerHTML= ndate;
+ divT4.innerHTML= ndate;
+ divT5.innerHTML= ndate;
+ divT6.innerHTML= ndate;
+ divT7.innerHTML= ndate;
+ divT8.innerHTML= ndate;
+ divT9.innerHTML= ndate;
+ divT10.innerHTML= ndate;
+ divT11.innerHTML= ndate;
+ divT12.innerHTML= ndate;
+ divT13.innerHTML= ndate;
+ divT14.innerHTML= ndate;
+ divT15.innerHTML= ndate;
+ divT16.innerHTML= ndate;
+}
+
+function add_zero(temp)
+{
+ if(temp<10) return "0"+temp;
+ else return temp;
+}
+
+setInterval("getCurDate()",100);
+
+</script>
+
+
+<body>
+<!--loading进度条-->
+<div  id="loading" style="display:none;height: 240px;width: 550px">
+<p style="margin-bottom: 0;text-align: center">脚本执行中，请耐心等待...</p>
+    <br/>
+    <!--http://ww2.sinaimg.cn/mw690/0064cTs2gw1exk8tho8p7g30dg05u451.gif 原动图-->
+    <img src="http://wx3.sinaimg.cn/large/62d8a08bgy1fpkhz81k0dg20dw0af4qq.gif" height="240px" width="550px">
+</div>
+
+<div id="progress">
+			<span></span>
+		</div>
+<div id="container" style="width:100%">
+    <div id="header" style="backgroud-color:#FFA500;text-align:center;">
+        <h1 style="margin-bottom: 0" >自动化测试平台<input type="button" value="生成银行卡号" onclick="window.open('http://192.168.0.171:1234/bankid/')"  style="width: 100px;height: 40px;float: right">
+            <input type="button" value="生成身份证号码" onclick="window.open('http://192.168.0.171:1234/IDcard/')"  style="width: 120px;height: 40px;float: right">
+            <input type="button" value="周报填写平台" onclick="window.open('task')"  style="width: 100px;height: 40px;float: right"></h1>
+    </div>
+    <div id="menu" style="background-color:#FFD700;height:100%;width:100%;float:left;">
+        <table class="tab-2" width="100%;margin:auto" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <th >测试标题</th>
+                <th >操作</th>
+            </tr>
+
+             <!--宜湃网发标-xyz+co+cc-接口自动化 -->
+            <tr>
+                <td style="text-align:center">宜湃网接口自动化-xyz+co+cc</td>
+                <td>
+                    <form action="/yipaiwang" method="get" accept-charset="UTF-8">
+                            <label>账号</label><input type="text" name="adminname" style="width: 60px;height: 20px;text-align:center ";>
+                            <label>密码</label><input type="text" name="password" style="width: 60px;height: 20px;text-align:center ";>
+                            <label>借款标题</label><input type="text" name="borrowtitle" style="width: 60px;height: 20px;text-align:center ";>
+                            <label>金额</label><input type="text" name="money" style="width: 60px;height: 20px;text-align:center ";>
+                            <label>利率</label><input type="text" name="rate" style="width: 60px;height: 20px;text-align:center ";>
+                            <label>借款人</label><select id="username_type" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="username_type" style="width: 70px;height: 20px;text-align:center ";>
+                                                        <option value="11">个人</option>
+                                                        <option value="21">机构</option>
+                    </select>
+                            <input type="text" name="borrowname" style="width: 60px;height: 20px;text-align:center ";>
+                            <label>借款类型</label><select id="period_type" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="period_type" style="width: 50px;height: 20px;text-align:center ";>
+                                                        <option value="day">天标</option>
+                                                        <option value="month">月标</option>
+
+                    </select>
+
+
+
+                            <label>选择类型</label><select id="url" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="borrowtype" style="width: 50px;height: 20px;text-align:center ";>
+                                                        <option value="house">银优计划</option>
+                                                        <option value="company">企优计划</option>
+
+
+                    </select>
+
+                            <label>选择环境</label><select id="url" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="url" style="width: 50px;height: 20px;text-align:center ";>
+                                                        <option value="http://op.yipaiwang.co">co</option>
+                                                        <option value="http://op.yipaiwang.cc">cc</option>
+                                                        <option value="http://op.yidai.xyz">xyz</option>
+
+                    </select>
+                            <label>还款方式</label><select id="huankuanfangshi" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="huankuanfangshi" style="width: 100px;height: 20px;text-align:center ";>
+                                                        <option value="end">到期还本付息</option>
+                                                        <option value="season">90天付息，到期还本</option>
+                                                            <option value="season_two">按季付息，到期还本</option>
+                                                        <option value="endmonth">按月付息，到期还本</option>
+
+                    </select>
+                    <br>
+                         <label>期限</label><input type="text" name="month" style="width: 40px;height: 20px;text-align:center";>
+                        <label>债权管理人</label><select id="cashgroup01" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="cashgroup" style="width: 120px;height: 20px;text-align:center ";>
+                                                        <option value="">请选择所在提现分组</option>
+                                                        <option value="13">提现到借款人</option>
+                                                        <option value="12">提现到债权管理人</option>
+                                                        <option value="20">提现到机构债权管理人</option>
+                                                        <option value="21">提现到机构借款人</option>
+                    </select>
+                            <input type="text" name="agentname" style="width: 40px;height: 20px;text-align:center";>
+                            <label>兑付方式</label><select id="pay_type" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="pay_type" style="width: 75px;height: 20px;text-align:center ";>
+                                                        <option value="">请选择兑付方式</option>
+                                                        <option value="0">平台兑付</option>
+                                                        <option value="1">金交所兑付</option>
+
+                    </select>
+                            <label>起投金额</label><input type="text" name="tender_account_min" style="width: 40px;height: 20px;text-align:center";>
+                             <input class="ui-btn btn-green btn-submit" type="submit" value="执行" id="button3"  onclick="document.getElementById('loading').style.display='';">
+
+                        <!--<label>是否奖励</label><select id="rewardstate" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="rewardstate" style="width: 40px;height: 20px;text-align:center ";>
+                                                        <option value="1">否</option>
+                                                        <option value="2">是</option>
+
+                    </select>
+                                                    <select id="rewardmode" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="rewardmode" style="width: 100px;height: 20px;text-align:center ";>
+                                                        <option value="1">按金额奖励</option>
+                                                        <option value="2">按比例奖励</option>
+                    </select>
+
+                                <label>比例</label><input type="text" name="reward" style="width: 60px;height: 20px;text-align:center ";>-->
+
+
+                    </form>
+
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+
+<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;position: fixed;_position: absolute;bottom: 0;width:100%;">
+版权 chenqiang@hupovip.cn</div>
+</div>
+</body>
+</html>
