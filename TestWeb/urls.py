@@ -22,5 +22,7 @@ urlpatterns = [
     url(r'^$', view.Yidai_Test),
     url(r'^bankid/$', view.banid),
     url(r'^IDcard/$', view.IDcard),
+    url(r'^task/$',view.task),
+    url(r'^weekly/$', view.weekly),
 
 ]
