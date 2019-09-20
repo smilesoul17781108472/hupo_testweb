@@ -22,5 +22,18 @@ def IDcard(request):
     import ID_card
     return render(request, 'test_result.html', {'testmsg':ID_card.idcard_generator()})
 
+#周报填写页面
+def task(request):
+    return render(request, 'task.html')
+
+#周报填写
+def weekly(request):
+    new_username = request.GET.get('username')
+    new_current_content = request.GET.get('current_content')
+    new_next_content = request.GET.get('next_content')
+    new_time_zones = request.GET.get('time_zones')
+    import weekly
+    return render(request, 'test_result.html', {'testmsg':weekly.write_weekly(new_username,new_current_content,new_next_content,new_time_zones)})
+
 
 
