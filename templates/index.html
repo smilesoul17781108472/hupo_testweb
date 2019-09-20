@@ -12,9 +12,7 @@
 			    duration: 3000,
 			    step: function() {
 			        var percentage = Math.round(this.property);
-
 			        $('#progress').css('width',  percentage+"%");
-
 			         if(percentage == 100) {
            				 $("#progress").addClass("done");//完成，隐藏进度条
        				 }
@@ -44,7 +42,6 @@
 				right:-10px;
 				-webkit-animation:pulse 2s ease-out 0s infinite;
 			}
-
 			@-webkit-keyframes pulse {
 				30% {
 					opacity:.6
@@ -56,7 +53,6 @@
 					opacity:.6
 				}
 			}
-
 		</style>
     <!--按钮loading js -->
     <style>
@@ -65,8 +61,6 @@ td{
     text-align: left;
     padding: 5px;
 }
-
-
 #loading {
   position:absolute;
   width:500px;
@@ -75,7 +69,6 @@ td{
   margin: 0 auto;
   background-color:#FFD700;
   border:1px solid #FFD700;
-
 }
 </style>
     <script>
@@ -135,15 +128,12 @@ function getCurDate()
  divT15.innerHTML= ndate;
  divT16.innerHTML= ndate;
 }
-
 function add_zero(temp)
 {
  if(temp<10) return "0"+temp;
  else return temp;
 }
-
 setInterval("getCurDate()",100);
-
 </script>
 
 
@@ -163,7 +153,7 @@ setInterval("getCurDate()",100);
     <div id="header" style="backgroud-color:#FFA500;text-align:center;">
         <h1 style="margin-bottom: 0" >自动化测试平台<input type="button" value="生成银行卡号" onclick="window.open('http://192.168.0.171:1234/bankid/')"  style="width: 100px;height: 40px;float: right">
             <input type="button" value="生成身份证号码" onclick="window.open('http://192.168.0.171:1234/IDcard/')"  style="width: 120px;height: 40px;float: right">
-            <input type="button" value="周报填写平台" onclick="window.open('report')"  style="width: 100px;height: 40px;float: right"></h1>
+            <input type="button" value="周报填写平台" onclick="window.open('task')"  style="width: 100px;height: 40px;float: right"></h1>
     </div>
     <div id="menu" style="background-color:#FFD700;height:100%;width:100%;float:left;">
         <table class="tab-2" width="100%;margin:auto" cellpadding="0" cellspacing="0">
@@ -238,13 +228,11 @@ setInterval("getCurDate()",100);
                         <!--<label>是否奖励</label><select id="rewardstate" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="rewardstate" style="width: 40px;height: 20px;text-align:center ";>
                                                         <option value="1">否</option>
                                                         <option value="2">是</option>
-
                     </select>
                                                     <select id="rewardmode" class="sbox32 mr10px required valid" onchange="cashgroup_change(this)" aria-required="true" aria-invalid="false" name="rewardmode" style="width: 100px;height: 20px;text-align:center ";>
                                                         <option value="1">按金额奖励</option>
                                                         <option value="2">按比例奖励</option>
                     </select>
-
                                 <label>比例</label><input type="text" name="reward" style="width: 60px;height: 20px;text-align:center ";>-->
 
 
