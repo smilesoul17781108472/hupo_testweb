@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>周报</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/templatemo_main.css">
+    <style>
+        table {
+            border-spacing: 0;
+            border-collapse: collapse
+        }
+        th {
+            background-color: #79aec8;
+            border: 1px #609ab6 solid;
+        }
+    </style>
+</head>
+<body>
+<div align="center" style="width: 100%;font-size:15px">
+    <h3>周报</h3>
+    <div class="container" align="center">
+        <div class="row">
+            <div class="col-md-12">
+                <table id="oTable" class="table table-hover table-bordered table-condensed table-striped">
+                    <thead>
+                    <tr class="info">
+                        <th>本周内容</th>
+                        <th>下周计划</th>
+                        <th>完成时间</th>
+                        <th>姓名</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tr_tbody">
+                    <form action="/weekly" method="get" accept-charset="UTF-8" >
+                        <tr class="active">
+                            <td class="col-md-4"><input style='width:100%' id='current_content' name="current_content"></td>
+                            <td class="col-md-4"><input style='width:100%' id='next_content' name="next_content"></td>
+                            <td class="col-md-2"><input style='width:100%' id='time_zones' name="time_zones"></td>
+                            <td class="col-md-2"><input style='width:100%' id='username' name="username"></td>
+                            <td><input class="ui-btn btn-green btn-submit" type="submit" value="提交" id="button3"  onclick="document.getElementById('loading').style.display='';"></td>
+                        </tr>
+                    </form>>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
