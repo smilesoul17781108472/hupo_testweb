@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^bankid/$', view.banid),
     url(r'^IDcard/$', view.IDcard),
     url(r'^task/$',view.task),
+    url(r'^report/$',view.report),
     url(r'^weekly/$', view.weekly),
 
 ]

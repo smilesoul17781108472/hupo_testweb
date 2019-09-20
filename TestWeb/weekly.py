@@ -21,7 +21,7 @@ def write_weekly(username,current_content,next_content,time_zones):
         # 进行数据库写入
         cursor = connect.cursor()
         # SQL 插入语句
-        sql = "insert into mysql.weekReport(username,current_content,next_content,time_zones,created_time) " \
+        sql = "insert into hupo.weekReport(username,current_content,next_content,time_zones,created_time) " \
               "values('%s','%s','%s','%s','%s')" % (username,current_content,next_content,time_zones,now)
         # 执行sql语句
         input = cursor.execute(sql)
@@ -31,7 +31,7 @@ def write_weekly(username,current_content,next_content,time_zones):
 def show_weekly(username,time_zones):
     #只进行姓名数据库查询
     # SQL 查询语句
-    sql = "SELECT username,time_zones,current_content,next_content from test.weekly WHERE username =" + username + "order by created_time limit 100"
+    sql = "SELECT username,time_zones,current_content,next_content from hupo.weekReport WHERE username =" + username + "order by created_time limit 100"
     # 执行sql语句
     cursor.execute(sql)
     result = cursor.fetchall()
