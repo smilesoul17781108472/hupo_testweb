@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/static/css/templatemo_main.css">
     <style>
         table {
             border-spacing: 0;
@@ -17,6 +16,21 @@
         th {
             background-color: #79aec8;
             border: 1px #609ab6 solid;
+            text-align: center;
+		    vertical-align: middle!important;
+        }
+        td {
+            text-align: center;
+		    vertical-align: middle!important;
+
+        }
+        .ui-select select {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 3em;
+            opacity: 0;
         }
     </style>
 </head>
@@ -27,22 +41,32 @@
         <div class="row">
             <div class="col-md-12">
                 <table id="oTable" class="table table-hover table-bordered table-condensed table-striped">
-                    <thead>
-                    <tr class="info">
-                        <th>本周内容</th>
-                        <th>下周计划</th>
-                        <th>完成时间</th>
-                        <th>姓名</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
                     <tbody id="tr_tbody">
                     <form action="/weekly" method="get" accept-charset="UTF-8" >
                         <tr class="active">
-                            <td class="col-md-4"><textarea  style='width:100%' id='current_content' name="current_content"></textarea></td>
-                            <td class="col-md-4"><textarea style='width:100%' id='next_content' name="next_content"></textarea></td>
-                            <td class="col-md-2"><input style='width:100%' id='time_zones' name="time_zones"></td>
-                            <td class="col-md-2"><input style='width:100%' id='username' name="username"></td>
+                            <thead>
+                                <tr class="info">
+                                    <th>本周内容</th>
+                                    <th>下周计划</th>
+                            </tr>
+                            </thead>
+                            <td class="col-md-4"><textarea  style='width: 569px;height: 316px;' id='current_content' name="current_content"></textarea></td>
+                            <td class="col-md-4"><textarea style='width: 569px;height: 316px;' id='next_content' name="next_content"></textarea></td>
+                            <thead>
+                                <tr class="info">
+                                    <th>完成时间</th>
+                                    <th>姓名</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <td class="col-md-2"><input style='width:100%' name="time_zones" type="text" id="time_zones"></td>
+                            <td class="col-md-2"><select class="ui-select" id='username' name="username">
+                                <option value="">请选择姓名</option>
+                                <option value="希哥">希哥</option>
+                                <option value="洛阳">洛阳</option>
+                                <option value="浮萍">浮萍</option>
+                                <option value="尤里">尤里</option>
+                            </select></td>
                             <td><input class="ui-btn btn-green btn-submit" type="submit" value="提交" id="button3"  onclick="document.getElementById('loading').style.display='';"></td>
                         </tr>
                     </form>>
@@ -52,6 +76,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
